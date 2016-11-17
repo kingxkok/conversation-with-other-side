@@ -3,7 +3,7 @@ module.exports = () => {
   const utils = require('../utils')
   const config = require('../config')
   const crypto = require('crypto')
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
 
   // Home page is login
   router.get('/', (req, res, next) => {
