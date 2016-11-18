@@ -11,38 +11,16 @@
 	<script>
 	$(() => {
 
-		var stopper = 0;
+		
 
 		// /roomslist is NOT a route, it is a socket namespace
 		let socket = io('{{host}}/roomslist')
 		// selector for the input field 'roomName'
 		let newRoomInput = $("input[name='roomName']")
-		
-		let renderChatRooms = chatrooms => {
-			let roomsListDiv = $('#roomsListUL')
-			let listStr = ''
-			for (let chat of chatrooms) {
-				listStr += `<a href="/chat/${chat.roomID}"><li>${chat.room}</li></a>`
-			}
-			roomsListDiv.html('').append(listStr)
-		}
 
 		
-		let createNewRoom2 =(word) => {
-			socket.emit('createNewRoom', word);
-		}
-
-		$('#createBtn').on('click', () => {
-			if(newRoomInput.val().trim() != '')
-				createNewRoom();
-		})
-
-		$('#roomNameInputBox').keyup( (event) => {
-			if(event.keyCode == 13){
-				$('#createBtn').click();
-			}
-		})
-
+		
+	
 		/**
 		 * TODO #1:
 		 * Emit the event 'getChatrooms' to prompt the server to send the chatrooms
@@ -80,13 +58,18 @@
 		 });
 
 		 socket.on('newRoom', (chat)=>{
+			 $("#linkActivator").attr("href", "/chat/"+chat.roomID);
 		 	window.location = "/chat/"+chat.roomID;
 		 })
 
 	})
-	</script>
-</head>
 
+ 	
+</script>
+</head>
+<body>
+	<a id="linkActivator" href=# ><h2>click here to go to chatroom</h2></a>
+</body>
 </html>
 
 
