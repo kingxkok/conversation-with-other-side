@@ -58,7 +58,7 @@
 		 });
 
 		 socket.on('newRoom', (chat)=>{
-			 $("#linkActivator").attr("href", "/chat/"+chat.roomID);
+			$("#linkActivator").attr("href", "/chat/"+chat.roomID);
 		 	window.location = "/chat/"+chat.roomID;
 		 })
 
@@ -68,7 +68,7 @@
 </script>
 </head>
 <body>
-	<a id="linkActivator" href=# ><h2>click here to go to chatroom</h2></a>
+	<a id="linkActivator" href=chat ><h2>click here to go to chatroom</h2></a>
 </body>
 </html>
 

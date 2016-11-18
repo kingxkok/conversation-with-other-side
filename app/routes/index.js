@@ -50,6 +50,44 @@ module.exports = () => {
     }
   })
 
+  router.get('/chat', utils.isAuthenticated, (req, res, next) => {
+    let chatrooms = req.app.locals.chatrooms;
+    var roomID;
+
+    for ( var chat = 0; chat <= chatrooms.length; chat++) {
+
+        if(chat < chatrooms.length){
+          if(chatrooms[chat].users.length == 1  && chatrooms[chat].users[0].affiliation != req.session.user.affiliation){  
+            makeNew = false;
+            roomID = chatrooms[chat].roomID
+            }
+       //   else 
+          if(chatrooms[chat].users.length == 0) {
+            makeNew = false;
+            roomID = chatrooms[chat].roomID
+            }
+          }
+
+        }
+        
+        //else 
+        if (makeNew) {
+          roomID = utils.randomHex();
+           allrooms.push(  
+            {
+             room: roomName(),
+             roomID: roomID,
+             users: [],
+             history: []
+            } )
+         }
+
+         res.redirect('/chat/'+roomID)
+        
+  
+  })
+
+
 
 
 
